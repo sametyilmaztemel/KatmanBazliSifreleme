@@ -1,6 +1,1 @@
-# KatmansalSifreleme
-# KatmansalSifreleme
-# KatmansalSifreleme
-# KatmansalSifreleme
-# KatmansalSifreleme
-# KatmansalSifreleme
+# Caesar Algoritmasında Katman Bazlı Encode-Decode Gerçekleştirebilen Araç
