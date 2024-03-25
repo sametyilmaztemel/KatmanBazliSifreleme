@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string encode(string text, int shift) {
+    string encoded_text = "";
+    for (char& c : text) {
+        if (isalpha(c)) {
+            int ascii_offset = islower(c) ? 'a' : 'A';
+            char encoded_char = ((c - ascii_offset + shift) % 26) + ascii_offset;
+            encoded_text += encoded_char;
+        } else {
+            encoded_text += c;
+        }
+    }
+    return encoded_text;
+}
+
+string decode(string text, int shift) {
+    return encode(text, -shift);
+}
+
+int main() {
+    string choice;
+    cout << "Şifreleme (1) veya Çözme (2) seçin: ";
+    cin >> choice;
+
+    if (choice == "1") {
+        string plaintext;
+        cout << "Şifrelenecek metni girin: ";
+        cin.ignore();
+        getline(cin, plaintext);
+
+        int shift;
+        cout << "Kaç kez şifrelemek istediğinizi girin: ";
+        cin >> shift;
+
+        string ciphertext = plaintext;
+        for (int i = 0; i < shift; i++) {
+            ciphertext = encode(ciphertext, 1);
+        }
+
+        cout << "Şifrelenmiş Metin: " << ciphertext << std::endl;
+    } else if (choice == "2") {
+        string ciphertext;
+        cout << "Çözülecek metni girin: ";
+        cin.ignore();
+        getline(cin, ciphertext);
+
+        int shift;
+        cout << "Kaç kez çözmek istediğinizi girin: ";
+        cin >> shift;
+
+        string plaintext = ciphertext;
+        for (int i = 0; i < shift; i++) {
+            plaintext = decode(plaintext, 1);
+        }
+
+        cout << "Çözülmüş Metin: " << plaintext << endl;
+    } else {
+        cout << "Geçersiz seçim." << endl;
+    }
+
+    return 0;
+}
+
